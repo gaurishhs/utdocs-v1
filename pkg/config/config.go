@@ -9,6 +9,7 @@ var (
 	Configuration = Config{
 		SiteName:  "UTDocs",
 		CodeTheme: "atom-one-dark",
+		Footer:    "Made with ❤️ by Gaurish Sethia",
 	}
 )
 

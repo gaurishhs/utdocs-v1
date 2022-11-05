@@ -7,8 +7,7 @@ var Layout = `<!DOCTYPE html>
   <meta charset="utf-8" />
   <title>{{ .PageTitle }} | {{ .SiteName }}</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" href="style.css" />
-  <!-- <link rel="stylesheet" href="utdocs.css" /> -->
+  <link rel="stylesheet" href="styles.css" />
   <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/alpinejs.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/kutty@latest/dist/kutty.min.js"></script>
   <link rel="stylesheet" href="https://unpkg.com/@highlightjs/cdn-assets@11.6.0/styles/{{ .CodeTheme }}.min.css">
@@ -16,8 +15,8 @@ var Layout = `<!DOCTYPE html>
 <script>hljs.highlightAll();</script>
 </head>
 
-<body>
-  <section class="min-h-screen dark:bg-doc bg-white" x-data="{ sideBar: false, isDark: document.documentElement.classList.contains('dark') }">
+<body class=>
+  <section class="min-h-screen" x-data="{ sideBar: false, isDark: document.documentElement.classList.contains('dark') }">
     <nav
       class="fixed top-0 left-0 z-20 h-full pb-10 overflow-x-hidden overflow-y-auto transition origin-left transform bg-gdoc md:border-r-2 border-gray-400 w-60 md:translate-x-0"
       :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false">
@@ -26,10 +25,6 @@ var Layout = `<!DOCTYPE html>
       </a>
       <span class="block px-4 py-2 text-sm font-semibold text-gray-500">Documentation</span>
       <nav class="text-sm font-medium dark:bg-doc dark:text-gray-200 text-gray-600" aria-label="Main Navigation">
-        <a class="flex items-center w-auto mr-2 rounded-md px-3 ml-2 py-2 transition cursor-pointer group dark:hover:bg-gray-700 hover:bg-gray-300"
-          href="#">
-          <span>Home</span>
-        </a>
         {{ range .SidebarItems }}
         <a class="flex items-center w-auto mr-2 rounded-md px-3 ml-2 py-2 transition cursor-pointer group dark:hover:bg-gray-700 hover:bg-gray-300"
           href="{{ .Path }}">
@@ -73,6 +68,9 @@ var Layout = `<!DOCTYPE html>
       </div>
     </div>
   </section>
+  <footer>
+  {{ .Footer }}
+  </footer>
 </body>
 
 </html>`

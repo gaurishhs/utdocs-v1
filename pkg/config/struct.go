@@ -10,4 +10,5 @@ type Config struct {
 	CodeTheme    string
 	SidebarItems []SideBarItem
 	SiteLogo     string
+	Footer       string
 }

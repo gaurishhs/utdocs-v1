@@ -24,6 +24,7 @@ type ParseData struct {
 	SiteName     string
 	CodeTheme    string
 	SidebarItems []config.SideBarItem
+	Footer       string
 }
 
 var (
@@ -65,14 +66,19 @@ func ParseFile(utparser goldmark.Markdown, file string, layout *template.Templat
 		log.Fatal("Error parsing file: ", err)
 	}
 	metaData := meta.Get(context)
+	title := metaData["title"].(string)
+	if title == "" {
+		log.Fatal("Title not found in file: ", file)
+	}
 	data := ParseData{
 		Title:        config.SiteName,
 		Body:         buf.String(),
-		PageTitle:    metaData["title"].(string),
+		PageTitle:    title,
 		SiteName:     config.SiteName,
 		CodeTheme:    config.CodeTheme,
 		SidebarItems: config.SidebarItems,
 		SiteLogo:     config.SiteLogo,
+		Footer:       config.Footer,
 	}
 
 	if layout == nil {

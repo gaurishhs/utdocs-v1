@@ -37,6 +37,15 @@ html {
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
 }
 
+footer {
+  display: block;
+  background-color: rgb(17 24 39);
+  color: rgb(255 255 255);
+  padding: 1rem;
+  text-align: center;
+}
+
+
 /*
 1. Remove the margin in all browsers.
 2. Inherit line-height from `html` so users can set them as a class directly on the `html` element.
@@ -45,6 +54,7 @@ html {
 body {
   margin: 0; /* 1 */
   line-height: inherit; /* 2 */
+
 }
 
 /*
@@ -57,6 +67,10 @@ hr {
   height: 0; /* 1 */
   color: inherit; /* 2 */
   border-top-width: 1px; /* 3 */
+}
+
+.-mt-3 {
+  margin-top: -0.75rem;
 }
 
 /*
