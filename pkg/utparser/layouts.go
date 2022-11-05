@@ -15,8 +15,8 @@ var Layout = `<!DOCTYPE html>
 <script>hljs.highlightAll();</script>
 </head>
 
-<body class=>
-  <section class="min-h-screen" x-data="{ sideBar: false, isDark: document.documentElement.classList.contains('dark') }">
+<body>
+  <section class="min-h-screen dark:bg-doc bg-white" x-data="{ sideBar: false, isDark: document.documentElement.classList.contains('dark') }">
     <nav
       class="fixed top-0 left-0 z-20 h-full pb-10 overflow-x-hidden overflow-y-auto transition origin-left transform bg-gdoc md:border-r-2 border-gray-400 w-60 md:translate-x-0"
       :class="{ '-translate-x-full' : !sideBar, 'translate-x-0' : sideBar }" @click.away="sideBar = false">

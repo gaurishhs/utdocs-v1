@@ -3,9 +3,11 @@ package cmd
 import (
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"path/filepath"
 	"strings"
+	"time"
 
 	"github.com/gaurishhs/utdocs/pkg/config"
 	"github.com/gaurishhs/utdocs/pkg/utparser"
@@ -18,6 +20,7 @@ var buildCmd = &cobra.Command{
 	Long: `Build the site.
 This command will build the site and output it to the build directory.`,
 	Run: func(cmd *cobra.Command, args []string) {
+		startTime := time.Now()
 		parser := utparser.NewParser()
 		if len(args) == 0 {
 			config.ReadConfig("config.json")
@@ -27,9 +30,6 @@ This command will build the site and output it to the build directory.`,
 				os.Exit(1)
 			}
 			filepath.WalkDir(dir+"/content", func(path string, d os.DirEntry, err error) error {
-				// Generating the Sidebar
-				filePath := strings.TrimPrefix(path, dir+"/content/")
-				fmt.Print(filePath)
 				if filepath.Ext(path) == ".md" {
 					file, err := os.Open(path)
 					if err != nil {
@@ -53,6 +53,7 @@ This command will build the site and output it to the build directory.`,
 				fmt.Println(err)
 			}
 			os.WriteFile(dir+"/build/styles.css", file, 0770)
+			log.Printf("Site built in %s", time.Since(startTime))
 		} else {
 			config.ReadConfig(args[0] + "/config.json")
 			dir, err := os.Getwd()
@@ -85,6 +86,7 @@ This command will build the site and output it to the build directory.`,
 				fmt.Println(err)
 			}
 			os.WriteFile(dir+"/"+args[0]+"/build/styles.css", file, 0770)
+			log.Printf("Site built in %s", time.Since(startTime))
 		}
 	},
 }
